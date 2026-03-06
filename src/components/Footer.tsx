@@ -8,57 +8,59 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div className="space-y-6">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">
-                S
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="EICP ShopUniversities" 
+                className="h-12 w-auto object-contain bg-white rounded-lg p-1"
+              />
               <div className="flex flex-col">
-                <span className="font-bold text-xl leading-none">EICP</span>
-                <span className="text-[10px] text-green-400 font-bold tracking-widest uppercase">ShopUniversities</span>
+                <span className="font-bold text-xl leading-none text-white">EICP</span>
+                <span className="text-[10px] text-brand-cyan font-bold tracking-widest uppercase">ShopUniversities</span>
               </div>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               École Internationale Bilingue Canadienne. Une éducation d'excellence tournée vers un avenir prometteur, de la maternelle au lycée.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-blue-600 hover:text-white transition-all duration-300">
+              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-red hover:text-white transition-all duration-300">
                 <Facebook size={20} />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-pink-600 hover:text-white transition-all duration-300">
+              <a href="#" className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-brand-red hover:text-white transition-all duration-300">
                 <Instagram size={20} />
               </a>
             </div>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white border-l-4 border-blue-500 pl-3">Liens Rapides</h3>
+            <h3 className="text-lg font-bold mb-6 text-white border-l-4 border-brand-red pl-3">Liens Rapides</h3>
             <ul className="space-y-3 text-sm text-slate-400">
-              <li><Link to="/programme" className="hover:text-blue-400 transition-colors flex items-center gap-2"><span>→</span> Programme</Link></li>
-              <li><Link to="/tarifs" className="hover:text-blue-400 transition-colors flex items-center gap-2"><span>→</span> Tarifs</Link></li>
-              <li><Link to="/avantages" className="hover:text-blue-400 transition-colors flex items-center gap-2"><span>→</span> Avantages</Link></li>
-              <li><Link to="/inscription" className="hover:text-blue-400 transition-colors flex items-center gap-2"><span>→</span> Inscription</Link></li>
+              <li><Link to="/programme" className="hover:text-brand-cyan transition-colors flex items-center gap-2"><span>→</span> Programme</Link></li>
+              <li><Link to="/tarifs" className="hover:text-brand-cyan transition-colors flex items-center gap-2"><span>→</span> Tarifs</Link></li>
+              <li><Link to="/avantages" className="hover:text-brand-cyan transition-colors flex items-center gap-2"><span>→</span> Avantages</Link></li>
+              <li><Link to="/inscription" className="hover:text-brand-cyan transition-colors flex items-center gap-2"><span>→</span> Inscription</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-lg font-bold mb-6 text-white border-l-4 border-green-500 pl-3">Contact</h3>
+            <h3 className="text-lg font-bold mb-6 text-white border-l-4 border-brand-cyan pl-3">Contact</h3>
             <ul className="space-y-4 text-sm text-slate-400">
               <li className="flex items-start gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-blue-400">
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-brand-red">
                   <MapPin size={16} />
                 </div>
                 <span>529 Avenue Félix HOUPHOUËT-BOIGNY<br />Quartier Louis, Libreville</span>
               </li>
               <li className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-green-400">
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-brand-red">
                   <Phone size={16} />
                 </div>
                 <span>+241 011 44 9292 / +241 062 24 8425</span>
               </li>
               <li className="flex items-center gap-4">
-                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-purple-400">
+                <div className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center shrink-0 text-brand-red">
                   <Mail size={16} />
                 </div>
-                <a href="mailto:info@shopuniversities.org" className="hover:text-white transition-colors">info@shopuniversities.org</a>
+                <a href="mailto:info@shopuniversities.org" className="hover:text-brand-cyan transition-colors">info@shopuniversities.org</a>
               </li>
             </ul>
           </div>

@@ -67,7 +67,7 @@ export default function Admin() {
           className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl border border-slate-200 dark:border-slate-800 w-full max-w-md"
         >
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <div className="w-16 h-16 bg-brand-red/10 dark:bg-red-900/30 text-brand-red dark:text-red-400 rounded-2xl flex items-center justify-center mx-auto mb-4">
               <Lock size={32} />
             </div>
             <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Accès Administrateur</h1>
@@ -79,13 +79,13 @@ export default function Admin() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-red focus:border-transparent outline-none transition-all"
                 placeholder="Mot de passe"
               />
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-lg hover:shadow-blue-600/30"
+              className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 px-4 rounded-xl transition-colors shadow-lg hover:shadow-brand-red/30"
             >
               Se connecter
             </button>
@@ -100,12 +100,12 @@ export default function Admin() {
       <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <h1 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white text-sm">A</span>
+            <span className="w-8 h-8 bg-brand-red rounded-lg flex items-center justify-center text-white text-sm">A</span>
             Administration
           </h1>
           <button 
             onClick={() => setIsAuthenticated(false)}
-            className="text-slate-500 dark:text-slate-400 hover:text-red-500 dark:hover:text-red-400 transition-colors flex items-center gap-2"
+            className="text-slate-500 dark:text-slate-400 hover:text-brand-red dark:hover:text-red-400 transition-colors flex items-center gap-2"
           >
             <LogOut size={20} />
             <span className="hidden sm:inline">Déconnexion</span>
@@ -125,12 +125,12 @@ export default function Admin() {
                 placeholder="Rechercher..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"
+                className="w-full pl-10 pr-4 py-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan outline-none"
               />
             </div>
             <button 
               onClick={fetchInquiries} 
-              className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              className="p-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-600 dark:text-slate-400 hover:text-brand-red dark:hover:text-red-400 transition-colors"
               title="Actualiser"
             >
               <RefreshCw size={20} className={loading ? 'animate-spin' : ''} />
@@ -168,7 +168,7 @@ export default function Admin() {
                         <div className="font-medium text-slate-900 dark:text-white">{inquiry.nom} {inquiry.prenom}</div>
                       </td>
                       <td className="px-6 py-4">
-                        <span className="inline-block px-2 py-1 rounded-md text-xs font-medium bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-800">
+                        <span className="inline-block px-2 py-1 rounded-md text-xs font-medium bg-brand-blue/10 dark:bg-blue-900/30 text-brand-blue dark:text-blue-400 border border-brand-blue/20 dark:border-blue-800">
                           {inquiry.niveau}
                         </span>
                       </td>
@@ -182,7 +182,7 @@ export default function Admin() {
                         {inquiry.message || '-'}
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <button className="text-slate-400 hover:text-red-500 transition-colors p-1">
+                        <button className="text-slate-400 hover:text-brand-red transition-colors p-1">
                           <Trash2 size={18} />
                         </button>
                       </td>

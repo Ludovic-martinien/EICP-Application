@@ -56,9 +56,9 @@ export default function Avantages() {
               className="bg-slate-50 dark:bg-slate-800 p-8 rounded-3xl border border-slate-100 dark:border-slate-700 hover:shadow-xl transition-all duration-300 group"
             >
               <div className="w-14 h-14 bg-white dark:bg-slate-700 rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300">
-                <benefit.icon className="text-blue-600 dark:text-blue-400 w-8 h-8" />
+                <benefit.icon className="text-brand-red dark:text-red-400 w-8 h-8 group-hover:text-brand-blue transition-colors" />
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">{benefit.title}</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-blue transition-colors">{benefit.title}</h3>
               <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                 {benefit.desc}
               </p>
@@ -70,11 +70,11 @@ export default function Avantages() {
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-24 bg-gradient-to-br from-blue-900 to-blue-800 rounded-[2.5rem] p-12 md:p-16 text-white text-center relative overflow-hidden shadow-2xl"
+          className="mt-24 bg-gradient-to-br from-brand-blue to-blue-900 rounded-[2.5rem] p-12 md:p-16 text-white text-center relative overflow-hidden shadow-2xl"
         >
           <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-          <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500 rounded-full blur-3xl opacity-30"></div>
-          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-green-500 rounded-full blur-3xl opacity-30"></div>
+          <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-red rounded-full blur-3xl opacity-30"></div>
+          <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white rounded-full blur-3xl opacity-10"></div>
           
           <div className="relative z-10">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">Prêt à rejoindre l'excellence ?</h2>
@@ -83,7 +83,7 @@ export default function Avantages() {
             </p>
             <a 
               href="/inscription" 
-              className="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-12 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(34,197,94,0.4)]"
+              className="inline-block bg-white hover:bg-slate-100 text-brand-blue font-bold py-4 px-12 rounded-full transition-all hover:scale-105 shadow-lg"
             >
               Inscrire mon enfant
             </a>

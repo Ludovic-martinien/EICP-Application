@@ -26,13 +26,14 @@ export default function Navbar() {
         <div className="flex justify-between h-20">
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0 flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-400 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
-                S
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-slate-900 dark:text-white leading-tight text-lg">EICP</span>
-                <span className="text-[10px] text-green-600 dark:text-green-400 font-bold tracking-widest uppercase">ShopUniversities</span>
-              </div>
+              <img 
+                src="/logo.png" 
+                alt="EICP ShopUniversities" 
+                className="h-14 w-auto object-contain bg-white rounded-lg p-1"
+                onError={(e) => {
+                  e.currentTarget.src = "https://placehold.co/300x100?text=EICP+Logo";
+                }}
+              />
             </Link>
           </div>
           
@@ -46,8 +47,8 @@ export default function Navbar() {
                   className={clsx(
                     "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300",
                     isActive(link.path)
-                      ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 shadow-sm"
-                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-blue-600 dark:hover:text-blue-400"
+                      ? "bg-brand-blue/10 dark:bg-brand-blue/30 text-brand-blue dark:text-blue-300 shadow-sm"
+                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-blue dark:hover:text-blue-300"
                   )}
                 >
                   <Icon size={18} />
@@ -68,7 +69,7 @@ export default function Navbar() {
 
             <Link
               to="/inscription"
-              className="ml-4 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              className="ml-4 flex items-center gap-2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-700 hover:to-brand-red text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
             >
               <UserPlus size={18} />
               S'inscrire
@@ -110,7 +111,7 @@ export default function Navbar() {
                     className={clsx(
                       "flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-colors",
                       isActive(link.path)
-                        ? "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400"
+                        ? "bg-brand-blue/10 dark:bg-brand-blue/30 text-brand-blue dark:text-blue-300"
                         : "text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
                     )}
                     onClick={() => setIsOpen(false)}
@@ -122,7 +123,7 @@ export default function Navbar() {
               })}
               <Link
                 to="/inscription"
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-blue-600 text-white hover:bg-blue-700 mt-4 shadow-md"
+                className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-red text-white hover:bg-red-700 mt-4 shadow-md"
                 onClick={() => setIsOpen(false)}
               >
                 <UserPlus size={20} />

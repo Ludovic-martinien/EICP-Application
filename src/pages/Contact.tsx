@@ -24,7 +24,7 @@ export default function Contact() {
               
               <div className="space-y-8">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-blue-600 dark:text-blue-400">
+                  <div className="w-12 h-12 bg-brand-red/10 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-brand-red dark:text-red-400">
                     <MapPin size={24} />
                   </div>
                   <div>
@@ -37,7 +37,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-green-600 dark:text-green-400">
+                  <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center flex-shrink-0 text-slate-600 dark:text-slate-400">
                     <Phone size={24} />
                   </div>
                   <div>
@@ -48,19 +48,19 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-purple-600 dark:text-purple-400">
+                  <div className="w-12 h-12 bg-brand-red/10 dark:bg-red-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-brand-red dark:text-red-400">
                     <Mail size={24} />
                   </div>
                   <div>
                     <h3 className="font-bold text-slate-900 dark:text-white mb-1">Email</h3>
-                    <a href="mailto:info@shopuniversities.org" className="text-blue-600 dark:text-blue-400 hover:underline">
+                    <a href="mailto:info@shopuniversities.org" className="text-brand-cyan dark:text-cyan-400 hover:underline">
                       info@shopuniversities.org
                     </a>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center flex-shrink-0 text-orange-600 dark:text-orange-400">
+                  <div className="w-12 h-12 bg-slate-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center flex-shrink-0 text-slate-600 dark:text-slate-400">
                     <Clock size={24} />
                   </div>
                   <div>

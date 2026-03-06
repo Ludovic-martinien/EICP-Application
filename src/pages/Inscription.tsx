@@ -41,14 +41,14 @@ export default function Inscription() {
   };
 
   return (
-    <div className="py-20 bg-slate-50 dark:bg-slate-950 min-h-screen flex items-center justify-center transition-colors duration-300">
+    <div className="py-20 bg-slate-50 dark:bg-slate-950 min-h-screen transition-colors duration-300">
       <div className="max-w-3xl w-full mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="bg-white dark:bg-slate-900 rounded-3xl shadow-xl overflow-hidden border border-slate-200 dark:border-slate-800"
         >
-          <div className="bg-gradient-to-r from-blue-900 to-blue-800 px-8 py-8 text-center">
+          <div className="bg-gradient-to-r from-brand-blue to-blue-900 px-8 py-8 text-center">
             <h1 className="text-3xl font-bold text-white mb-2">Formulaire d'Inscription</h1>
             <p className="text-blue-200">Remplissez ce formulaire pour initier la procédure d'inscription.</p>
           </div>
@@ -60,7 +60,7 @@ export default function Inscription() {
                 animate={{ opacity: 1, scale: 1 }}
                 className="text-center py-12"
               >
-                <div className="w-20 h-20 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                <div className="w-20 h-20 bg-brand-green/20 dark:bg-green-900/30 text-brand-green dark:text-green-400 rounded-full flex items-center justify-center mx-auto mb-6">
                   <Check size={40} />
                 </div>
                 <h2 className="text-3xl font-bold text-slate-900 dark:text-white mb-4">Demande envoyée !</h2>
@@ -69,7 +69,7 @@ export default function Inscription() {
                 </p>
                 <button 
                   onClick={() => setIsSuccess(false)}
-                  className="text-blue-600 dark:text-blue-400 font-bold hover:underline"
+                  className="text-brand-blue dark:text-blue-400 font-bold hover:underline"
                 >
                   Envoyer une autre demande
                 </button>
@@ -81,19 +81,19 @@ export default function Inscription() {
                     <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Nom de l'élève</label>
                     <input
                       {...register('nom', { required: 'Ce champ est requis' })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all"
                       placeholder="Nom"
                     />
-                    {errors.nom && <span className="text-red-500 text-xs mt-1 block">{errors.nom.message}</span>}
+                    {errors.nom && <span className="text-brand-red text-xs mt-1 block">{errors.nom.message}</span>}
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Prénom de l'élève</label>
                     <input
                       {...register('prenom', { required: 'Ce champ est requis' })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all"
                       placeholder="Prénom"
                     />
-                    {errors.prenom && <span className="text-red-500 text-xs mt-1 block">{errors.prenom.message}</span>}
+                    {errors.prenom && <span className="text-brand-red text-xs mt-1 block">{errors.prenom.message}</span>}
                   </div>
                 </div>
 
@@ -103,20 +103,20 @@ export default function Inscription() {
                     <input
                       type="email"
                       {...register('email', { required: 'Ce champ est requis' })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all"
                       placeholder="exemple@email.com"
                     />
-                    {errors.email && <span className="text-red-500 text-xs mt-1 block">{errors.email.message}</span>}
+                    {errors.email && <span className="text-brand-red text-xs mt-1 block">{errors.email.message}</span>}
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Téléphone</label>
                     <input
                       type="tel"
                       {...register('telephone', { required: 'Ce champ est requis' })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all"
                       placeholder="+241 ..."
                     />
-                    {errors.telephone && <span className="text-red-500 text-xs mt-1 block">{errors.telephone.message}</span>}
+                    {errors.telephone && <span className="text-brand-red text-xs mt-1 block">{errors.telephone.message}</span>}
                   </div>
                 </div>
 
@@ -125,7 +125,7 @@ export default function Inscription() {
                   <div className="relative">
                     <select
                       {...register('niveau', { required: 'Veuillez choisir un niveau' })}
-                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all appearance-none"
                     >
                       <option value="">Sélectionner un niveau...</option>
                       <option value="Maternelle">Maternelle (TPS - GS)</option>
@@ -137,7 +137,7 @@ export default function Inscription() {
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" fillRule="evenodd"></path></svg>
                     </div>
                   </div>
-                  {errors.niveau && <span className="text-red-500 text-xs mt-1 block">{errors.niveau.message}</span>}
+                  {errors.niveau && <span className="text-brand-red text-xs mt-1 block">{errors.niveau.message}</span>}
                 </div>
 
                 <div>
@@ -145,17 +145,17 @@ export default function Inscription() {
                   <textarea
                     {...register('message')}
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-white focus:ring-2 focus:ring-brand-cyan focus:border-transparent outline-none transition-all resize-none"
                     placeholder="Questions particulières ou précisions..."
                   />
                 </div>
 
-                {error && <div className="text-red-500 text-sm text-center bg-red-50 dark:bg-red-900/20 p-3 rounded-lg">{error}</div>}
+                {error && <div className="text-brand-red text-sm text-center bg-brand-red/10 dark:bg-red-900/20 p-3 rounded-lg">{error}</div>}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-blue-600/30 hover:-translate-y-0.5"
+                  className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-4 px-6 rounded-xl transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg hover:shadow-brand-red/30 hover:-translate-y-0.5"
                 >
                   {isSubmitting ? (
                     <>

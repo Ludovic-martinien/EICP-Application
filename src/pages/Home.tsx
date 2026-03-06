@@ -37,7 +37,7 @@ export default function Home() {
               className="absolute inset-0 w-full h-full object-cover"
             />
           </AnimatePresence>
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/80 to-blue-900/50 dark:from-black/90 dark:via-black/80 dark:to-blue-900/60 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/90 via-brand-blue/80 to-brand-red/50 dark:from-black/90 dark:via-black/80 dark:to-brand-red/60 z-10" />
         </div>
         
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
@@ -46,12 +46,12 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-block mb-4 px-4 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 backdrop-blur-sm text-blue-200 font-medium text-sm tracking-wide uppercase">
+            <div className="inline-block mb-4 px-4 py-1 rounded-full bg-brand-red/20 border border-brand-red/30 backdrop-blur-sm text-red-100 font-medium text-sm tracking-wide uppercase">
               Excellence & Bilinguisme
             </div>
             <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight tracking-tight">
               École Internationale <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-white">
                 Bilingue Canadienne
               </span>
             </h1>
@@ -61,7 +61,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-5 justify-center">
               <Link 
                 to="/inscription" 
-                className="group bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.5)] flex items-center justify-center gap-2"
+                className="group bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-[0_0_20px_rgba(211,47,47,0.3)] hover:shadow-[0_0_30px_rgba(211,47,47,0.5)] flex items-center justify-center gap-2"
               >
                 Inscription Ouverte
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -78,10 +78,10 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-10 bg-blue-600 dark:bg-blue-900 text-white relative overflow-hidden">
+      <section className="py-10 bg-brand-red dark:bg-red-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-blue-500/30">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center divide-x divide-white/20">
             {[
               { num: "100%", label: "Réussite au Bac" },
               { num: "2", label: "Langues (Fr/En)" },
@@ -90,7 +90,7 @@ export default function Home() {
             ].map((stat, idx) => (
               <div key={idx} className="p-2">
                 <div className="text-3xl md:text-4xl font-bold mb-1">{stat.num}</div>
-                <div className="text-blue-200 text-sm font-medium uppercase tracking-wider">{stat.label}</div>
+                <div className="text-red-100 text-sm font-medium uppercase tracking-wider">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -101,7 +101,7 @@ export default function Home() {
       <section className="py-24 bg-slate-50 dark:bg-slate-950 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mb-6">Pourquoi choisir EICP ?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-brand-blue dark:text-white mb-6">Pourquoi choisir EICP ?</h2>
             <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto text-lg">
               Nous offrons bien plus qu'un enseignement académique. Nous formons des citoyens du monde, confiants et compétents.
             </p>
@@ -109,10 +109,10 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Globe, title: "Programme Bilingue", desc: "Immersion complète en Français et Anglais dès le plus jeune âge pour une maîtrise naturelle.", color: "text-blue-500", bg: "bg-blue-50 dark:bg-blue-900/20" },
-              { icon: Award, title: "Double Diplôme", desc: "Baccalauréat Français et Diplôme d'Études Secondaires de l'Ontario pour une mobilité internationale.", color: "text-purple-500", bg: "bg-purple-50 dark:bg-purple-900/20" },
-              { icon: BookOpen, title: "Pédagogie Active", desc: "Approche Montessori en maternelle et méthodes canadiennes innovantes centrées sur l'élève.", color: "text-green-500", bg: "bg-green-50 dark:bg-green-900/20" },
-              { icon: GraduationCap, title: "Excellence", desc: "Préparation rigoureuse aux meilleures universités mondiales avec un suivi personnalisé.", color: "text-orange-500", bg: "bg-orange-50 dark:bg-orange-900/20" }
+              { icon: Globe, title: "Programme Bilingue", desc: "Immersion complète en Français et Anglais dès le plus jeune âge pour une maîtrise naturelle.", color: "text-brand-blue", bg: "bg-brand-blue/10 dark:bg-brand-blue/20" },
+              { icon: Award, title: "Double Diplôme", desc: "Baccalauréat Français et Diplôme d'Études Secondaires de l'Ontario pour une mobilité internationale.", color: "text-brand-red", bg: "bg-brand-red/10 dark:bg-brand-red/20" },
+              { icon: BookOpen, title: "Pédagogie Active", desc: "Approche Montessori en maternelle et méthodes canadiennes innovantes centrées sur l'élève.", color: "text-brand-green", bg: "bg-brand-green/10 dark:bg-brand-green/20" },
+              { icon: GraduationCap, title: "Excellence", desc: "Préparation rigoureuse aux meilleures universités mondiales avec un suivi personnalisé.", color: "text-brand-cyan", bg: "bg-brand-cyan/10 dark:bg-brand-cyan/20" }
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
@@ -143,8 +143,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="relative"
             >
-              <div className="absolute -top-10 -left-10 w-40 h-40 bg-green-100 dark:bg-green-900/30 rounded-full blur-3xl -z-10" />
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-blue-100 dark:bg-blue-900/30 rounded-full blur-3xl -z-10" />
+              <div className="absolute -top-10 -left-10 w-40 h-40 bg-brand-red/10 dark:bg-brand-red/30 rounded-full blur-3xl -z-10" />
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-blue/10 dark:bg-brand-blue/30 rounded-full blur-3xl -z-10" />
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800">
                 <img 
                   src="https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
@@ -172,13 +172,13 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-sm font-bold mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-blue/10 dark:bg-brand-blue/30 text-brand-blue dark:text-blue-300 text-sm font-bold mb-6">
                 <Star size={16} className="fill-current" />
                 Une éducation tournée vers le monde
               </div>
-              <h2 className="text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight">
+              <h2 className="text-4xl font-bold text-brand-blue dark:text-white mb-6 leading-tight">
                 Préparer votre enfant <br />
-                <span className="text-blue-600 dark:text-blue-400">aux défis de demain</span>
+                <span className="text-brand-red dark:text-red-400">aux défis de demain</span>
               </h2>
               <p className="text-lg text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
                 L'École Internationale du Centre Pédagogique propose un Programme Franco-Canadien International Bilingue, offrant une éducation innovante et moderne, de la maternelle au lycée.
@@ -190,13 +190,13 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {['Maternelle Montessori', 'Approche Bilingue', 'Collège & Lycée', 'Activités Extrascolaires'].map((item, i) => (
                   <div key={i} className="flex items-center gap-3 text-slate-700 dark:text-slate-200 font-medium p-3 bg-slate-50 dark:bg-slate-800/50 rounded-xl">
-                    <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
+                    <div className="w-2 h-2 bg-brand-red rounded-full shadow-[0_0_10px_rgba(211,47,47,0.5)]" />
                     {item}
                   </div>
                 ))}
               </div>
 
-              <Link to="/programme" className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 font-bold hover:text-blue-800 dark:hover:text-blue-300 transition-colors text-lg group">
+              <Link to="/programme" className="inline-flex items-center gap-2 text-brand-red dark:text-red-400 font-bold hover:text-red-800 dark:hover:text-red-300 transition-colors text-lg group">
                 En savoir plus sur nos programmes 
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
               </Link>
@@ -206,19 +206,19 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-slate-900 text-white relative overflow-hidden">
+      <section className="py-20 bg-brand-blue text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center opacity-20 bg-fixed"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/80 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-brand-blue/80 to-transparent"></div>
         
         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Prêt à commencer l'aventure ?</h2>
-          <p className="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
             Offrez à votre enfant une éducation d'excellence dans un environnement international stimulant.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               to="/inscription" 
-              className="bg-blue-600 hover:bg-blue-700 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-blue-600/30"
+              className="bg-brand-red hover:bg-red-700 text-white px-10 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-red-600/30"
             >
               Inscrire mon enfant
             </Link>
