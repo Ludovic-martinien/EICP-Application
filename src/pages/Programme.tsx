@@ -1,6 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Baby, BookOpen, GraduationCap, School, CheckCircle2, X, Clock, Calendar, Users, Award } from 'lucide-react';
+
+const ImageCarousel = ({ images, alt }: { images: string[], alt: string }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full h-full">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={currentIndex}
+          src={images[currentIndex]}
+          alt={alt}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8 }}
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </AnimatePresence>
+    </div>
+  );
+};
 
 export default function Programme() {
   const [selectedLevel, setSelectedLevel] = useState<any>(null);
@@ -27,7 +55,13 @@ export default function Programme() {
       bgColor: 'bg-brand-red/10 dark:bg-red-900/10',
       borderColor: 'border-brand-red/20 dark:border-red-800',
       icon: Baby,
-      img: 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      images: [
+        'https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1556606906-9605b6cf36af?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1596464716127-f9a8759fa413?auto=format&fit=crop&w=800&q=80'
+      ]
     },
     {
       id: 'primaire',
@@ -50,7 +84,13 @@ export default function Programme() {
       bgColor: 'bg-brand-blue/10 dark:bg-blue-900/10',
       borderColor: 'border-brand-blue/20 dark:border-blue-800',
       icon: BookOpen,
-      img: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      images: [
+        'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1577896235296-0150056d1bb3?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=800&q=80'
+      ]
     },
     {
       id: 'college',
@@ -73,7 +113,13 @@ export default function Programme() {
       bgColor: 'bg-brand-green/10 dark:bg-green-900/10',
       borderColor: 'border-brand-green/20 dark:border-green-800',
       icon: School,
-      img: 'https://images.unsplash.com/photo-1427504746383-796ada2af52e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      images: [
+        'https://images.unsplash.com/photo-1427504746383-796ada2af52e?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80'
+      ]
     },
     {
       id: 'lycee',
@@ -96,7 +142,13 @@ export default function Programme() {
       bgColor: 'bg-brand-cyan/10 dark:bg-cyan-900/10',
       borderColor: 'border-brand-cyan/20 dark:border-cyan-800',
       icon: GraduationCap,
-      img: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+      images: [
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80',
+        'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?auto=format&fit=crop&w=800&q=80'
+      ]
     }
   ];
 
@@ -149,13 +201,9 @@ export default function Programme() {
                     <div className="relative group">
                       <div className={`absolute inset-0 ${level.bgColor} rounded-[2rem] transform ${isEven ? 'rotate-3' : '-rotate-3'} group-hover:rotate-0 transition-transform duration-500`}></div>
                       <div className="relative rounded-[2rem] overflow-hidden shadow-2xl aspect-[4/3]">
-                        <img 
-                          src={level.img} 
-                          alt={level.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60"></div>
-                        <div className="absolute bottom-6 left-6 text-white">
+                        <ImageCarousel images={level.images} alt={level.title} />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none"></div>
+                        <div className="absolute bottom-6 left-6 text-white pointer-events-none">
                           <div className="flex items-center gap-2 mb-2">
                             <Icon size={24} className="text-white/90" />
                             <span className="font-bold uppercase tracking-wider text-sm">{level.title}</span>
@@ -233,7 +281,7 @@ export default function Programme() {
               {/* Modal Header */}
               <div className={`relative h-48 ${selectedLevel.bgColor} overflow-hidden`}>
                 <img 
-                  src={selectedLevel.img} 
+                  src={selectedLevel.images[0]} 
                   alt={selectedLevel.title} 
                   className="w-full h-full object-cover opacity-50"
                 />

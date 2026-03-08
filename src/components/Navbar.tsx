@@ -1,13 +1,15 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, BookOpen, DollarSign, Star, UserPlus, Phone, Sun, Moon, LayoutDashboard } from 'lucide-react';
+import { Menu, X, Home, BookOpen, DollarSign, Star, UserPlus, Phone, Sun, Moon, LayoutDashboard, LogIn, User } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useTheme } from '../context/ThemeContext';
+import { useAuth } from '../context/AuthContext';
 import clsx from 'clsx';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const { user, profile } = useAuth();
   const location = useLocation();
 
   const links = [
@@ -67,13 +69,32 @@ export default function Navbar() {
               {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
             </button>
 
-            <Link
-              to="/inscription"
-              className="ml-4 flex items-center gap-2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-700 hover:to-brand-red text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-            >
-              <UserPlus size={18} />
-              S'inscrire
-            </Link>
+            {user ? (
+              <Link
+                to={`/dashboard/${profile?.role.split('_')[0] || 'eleve'}`}
+                className="ml-4 flex items-center gap-2 bg-brand-blue hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+              >
+                <LayoutDashboard size={18} />
+                Mon Espace
+              </Link>
+            ) : (
+              <div className="flex items-center gap-2 ml-4">
+                <Link
+                  to="/login"
+                  className="flex items-center gap-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue dark:hover:text-blue-300 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                >
+                  <LogIn size={18} />
+                  Connexion
+                </Link>
+                <Link
+                  to="/register"
+                  className="flex items-center gap-2 bg-gradient-to-r from-brand-red to-red-600 hover:from-red-700 hover:to-brand-red text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                >
+                  <UserPlus size={18} />
+                  S'inscrire
+                </Link>
+              </div>
+            )}
           </div>
 
           <div className="flex items-center lg:hidden gap-4">
@@ -121,21 +142,46 @@ export default function Navbar() {
                   </Link>
                 );
               })}
-              <Link
-                to="/inscription"
-                className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-red text-white hover:bg-red-700 mt-4 shadow-md"
-                onClick={() => setIsOpen(false)}
-              >
-                <UserPlus size={20} />
-                Inscription Ouverte
-              </Link>
+              
+              <div className="border-t border-slate-100 dark:border-slate-800 my-2 pt-2">
+                {user ? (
+                  <Link
+                    to={`/dashboard/${profile?.role.split('_')[0] || 'eleve'}`}
+                    className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-blue text-white hover:bg-blue-700 mt-2 shadow-md"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    <LayoutDashboard size={20} />
+                    Mon Espace
+                  </Link>
+                ) : (
+                  <>
+                    <Link
+                      to="/login"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <LogIn size={20} />
+                      Connexion
+                    </Link>
+                    <Link
+                      to="/register"
+                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-red text-white hover:bg-red-700 mt-2 shadow-md"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <UserPlus size={20} />
+                      S'inscrire
+                    </Link>
+                  </>
+                )}
+              </div>
+
               <Link
                 to="/admin"
                 className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 mt-2"
                 onClick={() => setIsOpen(false)}
               >
                 <LayoutDashboard size={16} />
-                Administration
+                Administration (Legacy)
               </Link>
             </div>
           </motion.div>
