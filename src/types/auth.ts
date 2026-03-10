@@ -1,5 +1,6 @@
 export type UserRole = 
   | 'eleve'
+  | 'parent'
   | 'enseignant_maternelle'
   | 'enseignant_primaire'
   | 'enseignant_college'

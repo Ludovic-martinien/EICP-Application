@@ -7,6 +7,7 @@ CREATE TABLE public.profiles (
   email TEXT UNIQUE NOT NULL,
   role TEXT NOT NULL CHECK (role IN (
     'eleve', 
+    'parent',
     'enseignant_maternelle', 'enseignant_primaire', 'enseignant_college', 
     'surveillant', 
     'secretaire', 
@@ -116,6 +117,7 @@ CREATE TABLE public.announcements (
   title TEXT NOT NULL,
   content TEXT NOT NULL,
   target_role TEXT, -- NULL for all, or specific role like 'eleve', 'parent'
+  target_class_id UUID REFERENCES public.classes(id),
   author_id UUID REFERENCES public.profiles(id),
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -145,6 +147,86 @@ CREATE TABLE public.schedule (
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+-- 13. STUDENT POINTS (Gamification)
+CREATE TABLE public.student_points (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  student_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  teacher_id UUID REFERENCES public.profiles(id),
+  points INTEGER NOT NULL,
+  type TEXT NOT NULL CHECK (type IN ('positif', 'negatif')),
+  description TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 14. MESSAGES (Internal Communication)
+CREATE TABLE public.messages (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  sender_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  receiver_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  message TEXT NOT NULL,
+  file_url TEXT,
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 15. CLASS POSTS (Class Feed)
+CREATE TABLE public.class_posts (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  teacher_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  class_id UUID REFERENCES public.classes(id) ON DELETE CASCADE,
+  content TEXT NOT NULL,
+  media_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 16. STUDENT PORTFOLIO
+CREATE TABLE public.student_portfolio (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  student_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  description TEXT,
+  file_url TEXT,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 17. ATTENDANCE (Présences)
+CREATE TABLE public.attendance (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  student_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  class_id UUID REFERENCES public.classes(id) ON DELETE CASCADE,
+  teacher_id UUID REFERENCES public.profiles(id),
+  status TEXT NOT NULL CHECK (status IN ('present', 'absent', 'late')),
+  date DATE DEFAULT CURRENT_DATE,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(student_id, class_id, date)
+);
+
+-- 18. NOTIFICATIONS
+CREATE TABLE public.notifications (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  user_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  title TEXT NOT NULL,
+  message TEXT NOT NULL,
+  is_read BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 19. PARENT_STUDENTS (Linking Parents to Students)
+CREATE TABLE public.parent_students (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  parent_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  student_id UUID REFERENCES public.profiles(id) ON DELETE CASCADE,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  UNIQUE(parent_id, student_id)
+);
+
+ALTER TABLE public.parent_students ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Parent students viewable by relevant users" ON public.parent_students FOR SELECT TO authenticated USING (
+  auth.uid() = parent_id OR auth.uid() = student_id OR
+  EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role IN ('directrice', 'secretaire'))
+);
+
 -- RLS POLICIES (Basic examples, need refinement based on specific requirements)
 
 -- Enable RLS on all tables
@@ -160,6 +242,13 @@ ALTER TABLE public.incidents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.announcements ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.documents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.schedule ENABLE ROW LEVEL SECURITY;
+
+ALTER TABLE public.student_points ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.class_posts ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.student_portfolio ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.attendance ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.notifications ENABLE ROW LEVEL SECURITY;
 
 -- Profiles: Users can read their own profile. Admins/Staff can read all.
 CREATE POLICY "Public profiles are viewable by everyone" ON public.profiles FOR SELECT USING (true);
@@ -187,6 +276,28 @@ CREATE POLICY "Absences viewable by relevant users" ON public.absences FOR SELEC
 CREATE POLICY "Payments viewable by relevant users" ON public.payments FOR SELECT TO authenticated USING (
   auth.uid() = student_id OR 
   EXISTS (SELECT 1 FROM public.profiles WHERE id = auth.uid() AND role IN ('comptable', 'directrice'))
+);
+
+-- Student Points: Viewable by everyone
+CREATE POLICY "Student points viewable by authenticated users" ON public.student_points FOR SELECT TO authenticated USING (true);
+
+-- Messages: Viewable by sender and receiver
+CREATE POLICY "Messages viewable by sender and receiver" ON public.messages FOR SELECT TO authenticated USING (
+  auth.uid() = sender_id OR auth.uid() = receiver_id
+);
+
+-- Class Posts: Viewable by everyone
+CREATE POLICY "Class posts viewable by authenticated users" ON public.class_posts FOR SELECT TO authenticated USING (true);
+
+-- Student Portfolio: Viewable by everyone
+CREATE POLICY "Student portfolio viewable by authenticated users" ON public.student_portfolio FOR SELECT TO authenticated USING (true);
+
+-- Attendance: Viewable by everyone
+CREATE POLICY "Attendance viewable by authenticated users" ON public.attendance FOR SELECT TO authenticated USING (true);
+
+-- Notifications: Viewable by user
+CREATE POLICY "Notifications viewable by user" ON public.notifications FOR SELECT TO authenticated USING (
+  auth.uid() = user_id
 );
 
 -- Insert some initial data (Optional)

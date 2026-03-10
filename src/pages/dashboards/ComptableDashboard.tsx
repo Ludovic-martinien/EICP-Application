@@ -3,6 +3,11 @@ import { DollarSign, CreditCard, FileText, TrendingUp, AlertCircle, Plus, Search
 import { motion } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import ComptablePaiements from './comptable/ComptablePaiements';
+import ComptableImpayes from './comptable/ComptableImpayes';
+import ComptableRecus from './comptable/ComptableRecus';
+import ComptableSalaires from './comptable/ComptableSalaires';
+import ComptableDepenses from './comptable/ComptableDepenses';
 
 function ComptableOverview() {
   const { profile } = useAuth();
@@ -167,60 +172,7 @@ function ComptableOverview() {
   );
 }
 
-function ComptablePaiements() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Paiements</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Historique des paiements...</p>
-      </div>
-    </div>
-  );
-}
 
-function ComptableImpayes() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Impayés</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Suivi des impayés...</p>
-      </div>
-    </div>
-  );
-}
-
-function ComptableRecus() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Reçus et Factures</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Génération de documents financiers...</p>
-      </div>
-    </div>
-  );
-}
-
-function ComptableSalaires() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Salaires</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Gestion des salaires...</p>
-      </div>
-    </div>
-  );
-}
-
-function ComptableDepenses() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Dépenses</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Suivi des dépenses...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function ComptableDashboard() {
   return (

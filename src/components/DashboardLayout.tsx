@@ -24,7 +24,12 @@ import {
   CreditCard,
   PieChart,
   UserPlus,
-  AlertCircle
+  AlertCircle,
+  Star,
+  MessageSquare,
+  Image,
+  FolderOpen,
+  CheckCircle
 } from 'lucide-react';
 import { UserRole } from '../types/auth';
 import clsx from 'clsx';
@@ -32,15 +37,28 @@ import clsx from 'clsx';
 const roleMenus: Record<UserRole, { label: string; icon: any; path: string }[]> = {
   eleve: [
     { label: 'Tableau de bord', icon: LayoutDashboard, path: '/dashboard/eleve' },
+    { label: 'Mes Points', icon: Star, path: '/dashboard/eleve/points' },
     { label: 'Mes Notes', icon: FileText, path: '/dashboard/eleve/notes' },
     { label: 'Mes Devoirs', icon: BookOpen, path: '/dashboard/eleve/devoirs' },
+    { label: 'Portfolio', icon: FolderOpen, path: '/dashboard/eleve/portfolio' },
+    { label: 'Messages', icon: MessageSquare, path: '/dashboard/eleve/messages' },
     { label: 'Emploi du temps', icon: Calendar, path: '/dashboard/eleve/emploi-du-temps' },
     { label: 'Documents', icon: File, path: '/dashboard/eleve/documents' },
     { label: 'Annonces', icon: Megaphone, path: '/dashboard/eleve/annonces' },
   ],
+  parent: [
+    { label: 'Progression enfant', icon: TrendingUp, path: '/dashboard/parent/progression' },
+    { label: 'Messages', icon: MessageSquare, path: '/dashboard/parent/messages' },
+    { label: 'Fil de classe', icon: Image, path: '/dashboard/parent/fil-classe' },
+    { label: 'Présences', icon: CheckCircle, path: '/dashboard/parent/presences' },
+  ],
   enseignant_maternelle: [
     { label: 'Tableau de bord', icon: LayoutDashboard, path: '/dashboard/enseignant' },
     { label: 'Mes Classes', icon: Users, path: '/dashboard/enseignant/classes' },
+    { label: 'Donner des points', icon: Star, path: '/dashboard/enseignant/points' },
+    { label: 'Présences', icon: CheckCircle, path: '/dashboard/enseignant/presences' },
+    { label: 'Fil de classe', icon: Image, path: '/dashboard/enseignant/fil-classe' },
+    { label: 'Messages', icon: MessageSquare, path: '/dashboard/enseignant/messages' },
     { label: 'Notes', icon: FileText, path: '/dashboard/enseignant/notes' },
     { label: 'Devoirs', icon: BookOpen, path: '/dashboard/enseignant/devoirs' },
     { label: 'Emploi du temps', icon: Calendar, path: '/dashboard/enseignant/emploi-du-temps' },
@@ -50,6 +68,10 @@ const roleMenus: Record<UserRole, { label: string; icon: any; path: string }[]> 
   enseignant_primaire: [
     { label: 'Tableau de bord', icon: LayoutDashboard, path: '/dashboard/enseignant' },
     { label: 'Mes Classes', icon: Users, path: '/dashboard/enseignant/classes' },
+    { label: 'Donner des points', icon: Star, path: '/dashboard/enseignant/points' },
+    { label: 'Présences', icon: CheckCircle, path: '/dashboard/enseignant/presences' },
+    { label: 'Fil de classe', icon: Image, path: '/dashboard/enseignant/fil-classe' },
+    { label: 'Messages', icon: MessageSquare, path: '/dashboard/enseignant/messages' },
     { label: 'Notes', icon: FileText, path: '/dashboard/enseignant/notes' },
     { label: 'Devoirs', icon: BookOpen, path: '/dashboard/enseignant/devoirs' },
     { label: 'Emploi du temps', icon: Calendar, path: '/dashboard/enseignant/emploi-du-temps' },
@@ -59,6 +81,10 @@ const roleMenus: Record<UserRole, { label: string; icon: any; path: string }[]> 
   enseignant_college: [
     { label: 'Tableau de bord', icon: LayoutDashboard, path: '/dashboard/enseignant' },
     { label: 'Mes Classes', icon: Users, path: '/dashboard/enseignant/classes' },
+    { label: 'Donner des points', icon: Star, path: '/dashboard/enseignant/points' },
+    { label: 'Présences', icon: CheckCircle, path: '/dashboard/enseignant/presences' },
+    { label: 'Fil de classe', icon: Image, path: '/dashboard/enseignant/fil-classe' },
+    { label: 'Messages', icon: MessageSquare, path: '/dashboard/enseignant/messages' },
     { label: 'Notes', icon: FileText, path: '/dashboard/enseignant/notes' },
     { label: 'Devoirs', icon: BookOpen, path: '/dashboard/enseignant/devoirs' },
     { label: 'Emploi du temps', icon: Calendar, path: '/dashboard/enseignant/emploi-du-temps' },
@@ -120,6 +146,7 @@ const roleMenus: Record<UserRole, { label: string; icon: any; path: string }[]> 
     { label: 'Finances', icon: DollarSign, path: '/dashboard/directrice/finances' },
     { label: 'Utilisateurs', icon: Users, path: '/dashboard/directrice/utilisateurs' },
     { label: 'Pédagogie', icon: BookOpen, path: '/dashboard/directrice/pedagogie' },
+    { label: 'Annonces', icon: Megaphone, path: '/dashboard/directrice/annonces' },
     { label: 'Paramètres', icon: Settings, path: '/dashboard/directrice/parametres' },
   ],
 };

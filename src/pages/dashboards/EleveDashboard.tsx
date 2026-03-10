@@ -8,6 +8,9 @@ import EleveDevoirs from './eleve/EleveDevoirs';
 import EleveEmploiDuTemps from './eleve/EleveEmploiDuTemps';
 import EleveDocuments from './eleve/EleveDocuments';
 import EleveAnnonces from './eleve/EleveAnnonces';
+import ElevePoints from './eleve/ElevePoints';
+import ElevePortfolio from './eleve/ElevePortfolio';
+import EleveMessages from './eleve/EleveMessages';
 
 function EleveOverview() {
   const { profile } = useAuth();
@@ -185,6 +188,9 @@ export default function EleveDashboard() {
       <Route path="emploi-du-temps" element={<EleveEmploiDuTemps />} />
       <Route path="documents" element={<EleveDocuments />} />
       <Route path="annonces" element={<EleveAnnonces />} />
+      <Route path="points" element={<ElevePoints />} />
+      <Route path="portfolio" element={<ElevePortfolio />} />
+      <Route path="messages" element={<EleveMessages />} />
     </Routes>
   );
 }

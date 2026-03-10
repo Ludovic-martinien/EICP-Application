@@ -20,6 +20,14 @@ export default function Navbar() {
     { name: 'Contact', path: '/contact', icon: Phone },
   ];
 
+  const mobileLinks = [
+    ...links,
+    ...(!user ? [
+      { name: 'Connexion', path: '/login', icon: LogIn },
+      { name: 'Inscription', path: '/register', icon: UserPlus },
+    ] : [])
+  ];
+
   const isActive = (path: string) => location.pathname === path;
 
   return (
@@ -123,7 +131,7 @@ export default function Navbar() {
             className="lg:hidden bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 overflow-hidden"
           >
             <div className="px-4 pt-4 pb-6 space-y-2">
-              {links.map((link) => {
+              {mobileLinks.map((link) => {
                 const Icon = link.icon;
                 return (
                   <Link
@@ -144,7 +152,7 @@ export default function Navbar() {
               })}
               
               <div className="border-t border-slate-100 dark:border-slate-800 my-2 pt-2">
-                {user ? (
+                {user && (
                   <Link
                     to={`/dashboard/${profile?.role.split('_')[0] || 'eleve'}`}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-blue text-white hover:bg-blue-700 mt-2 shadow-md"
@@ -153,25 +161,6 @@ export default function Navbar() {
                     <LayoutDashboard size={20} />
                     Mon Espace
                   </Link>
-                ) : (
-                  <>
-                    <Link
-                      to="/login"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <LogIn size={20} />
-                      Connexion
-                    </Link>
-                    <Link
-                      to="/register"
-                      className="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold bg-brand-red text-white hover:bg-red-700 mt-2 shadow-md"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      <UserPlus size={20} />
-                      S'inscrire
-                    </Link>
-                  </>
                 )}
               </div>
 

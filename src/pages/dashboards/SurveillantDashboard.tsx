@@ -3,6 +3,10 @@ import { ClipboardList, Clock, Shield, UserX, AlertTriangle, Plus, Search } from
 import { motion } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import SurveillantAbsences from './surveillant/SurveillantAbsences';
+import SurveillantRetards from './surveillant/SurveillantRetards';
+import SurveillantIncidents from './surveillant/SurveillantIncidents';
+import SurveillantCantine from './surveillant/SurveillantCantine';
 
 function SurveillantOverview() {
   const { profile } = useAuth();
@@ -180,49 +184,7 @@ function SurveillantOverview() {
   );
 }
 
-function SurveillantAbsences() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Gestion des Absences</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Liste des absences et justifications...</p>
-      </div>
-    </div>
-  );
-}
 
-function SurveillantRetards() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Gestion des Retards</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Suivi des retards...</p>
-      </div>
-    </div>
-  );
-}
-
-function SurveillantIncidents() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Gestion des Incidents</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Rapports disciplinaires et suivi...</p>
-      </div>
-    </div>
-  );
-}
-
-function SurveillantCantine() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Cantine</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Pointage cantine...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function SurveillantDashboard() {
   return (

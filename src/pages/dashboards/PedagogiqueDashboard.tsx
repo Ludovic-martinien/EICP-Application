@@ -3,6 +3,10 @@ import { TrendingUp, Award, BookOpen, PieChart, FileText, Search, BarChart2 } fr
 import { motion } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import PedagogiqueProgrammes from './pedagogique/PedagogiqueProgrammes';
+import PedagogiqueStatistiques from './pedagogique/PedagogiqueStatistiques';
+import PedagogiqueRapports from './pedagogique/PedagogiqueRapports';
+import PedagogiqueEnseignants from './pedagogique/PedagogiqueEnseignants';
 
 function PedagogiqueOverview() {
   const { profile } = useAuth();
@@ -175,49 +179,7 @@ function PedagogiqueOverview() {
   );
 }
 
-function PedagogiqueProgrammes() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Programmes Scolaires</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Gestion et suivi des programmes...</p>
-      </div>
-    </div>
-  );
-}
 
-function PedagogiqueStatistiques() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Statistiques et Performances</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Analyses détaillées des résultats...</p>
-      </div>
-    </div>
-  );
-}
-
-function PedagogiqueRapports() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Rapports</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Génération et consultation des rapports...</p>
-      </div>
-    </div>
-  );
-}
-
-function PedagogiqueEnseignants() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Suivi Enseignants</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Suivi pédagogique des enseignants...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function PedagogiqueDashboard() {
   return (

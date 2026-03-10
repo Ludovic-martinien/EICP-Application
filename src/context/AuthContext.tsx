@@ -27,7 +27,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchProfile(session.user.id);
+        fetchProfile(session.user);
       } else {
         setLoading(false);
       }
@@ -38,7 +38,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setSession(session);
       setUser(session?.user ?? null);
       if (session?.user) {
-        fetchProfile(session.user.id);
+        fetchProfile(session.user);
       } else {
         setProfile(null);
         setLoading(false);
@@ -48,18 +48,33 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const fetchProfile = async (userId: string) => {
+  const fetchProfile = async (currentUser: User) => {
     try {
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', userId)
-        .single();
+        .eq('id', currentUser.id)
+        .maybeSingle();
 
       if (error) {
         console.error('Error fetching profile:', error);
-      } else {
+      } else if (data) {
         setProfile(data as Profile);
+      } else {
+        console.warn('No profile found in database for user:', currentUser.id, 'using metadata fallback');
+        const meta = currentUser.user_metadata || {};
+        setProfile({
+          id: currentUser.id,
+          email: currentUser.email || '',
+          nom: meta.nom || 'Utilisateur',
+          prenom: meta.prenom || '',
+          role: meta.role || 'eleve',
+          telephone: meta.telephone || '',
+          niveau: meta.niveau || '',
+          classe: meta.classe || '',
+          specialite: meta.specialite || '',
+          created_at: currentUser.created_at
+        });
       }
     } catch (error) {
       console.error('Error fetching profile:', error);
@@ -101,11 +116,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             prenom: metadata.prenom,
             role: metadata.role,
             created_at: new Date().toISOString(),
-            // Default values for optional fields
-            telephone: '',
-            niveau: '',
-            classe: '',
-            specialite: ''
+            telephone: metadata.telephone || '',
+            niveau: metadata.niveau || '',
+            classe: metadata.classe || '',
+            specialite: metadata.specialite || ''
           }
         ]);
 

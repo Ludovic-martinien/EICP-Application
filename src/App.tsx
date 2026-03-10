@@ -16,6 +16,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout';
 import EleveDashboard from './pages/dashboards/EleveDashboard';
+import ParentDashboard from './pages/dashboards/ParentDashboard';
 import EnseignantDashboard from './pages/dashboards/EnseignantDashboard';
 import SurveillantDashboard from './pages/dashboards/SurveillantDashboard';
 import SecretaireDashboard from './pages/dashboards/SecretaireDashboard';
@@ -56,6 +57,8 @@ export default function App() {
                 <Route index element={<DashboardIndex />} />
                 
                 <Route path="eleve/*" element={<EleveDashboard />} />
+                
+                <Route path="parent/*" element={<ParentDashboard />} />
                 
                 <Route path="enseignant/*" element={<EnseignantDashboard />} />
                 

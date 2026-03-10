@@ -1,17 +1,59 @@
-import React from 'react';
-import { Users, GraduationCap, DollarSign, TrendingUp, Settings, FileText, PieChart, BarChart2 } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, GraduationCap, DollarSign, TrendingUp, Settings, FileText, PieChart, BarChart2, Megaphone } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import { supabase } from '../../lib/supabaseClient';
+import DirectriceFinances from './directrice/DirectriceFinances';
+import DirectriceUtilisateurs from './directrice/DirectriceUtilisateurs';
+import DirectricePedagogie from './directrice/DirectricePedagogie';
+import DirectriceParametres from './directrice/DirectriceParametres';
+import DirectriceAnnonces from './directrice/DirectriceAnnonces';
 
 function DirectriceOverview() {
   const { profile } = useAuth();
+  const [totalEleves, setTotalEleves] = useState(0);
+  const [totalEnseignants, setTotalEnseignants] = useState(0);
+  const [revenus, setRevenus] = useState(0);
 
-  // Mock data
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      // Fetch Eleves
+      const { count: elevesCount } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .eq('role', 'eleve');
+      setTotalEleves(elevesCount || 0);
+
+      // Fetch Enseignants
+      const { count: enseignantsCount } = await supabase
+        .from('profiles')
+        .select('*', { count: 'exact', head: true })
+        .like('role', 'enseignant_%');
+      setTotalEnseignants(enseignantsCount || 0);
+
+      // Fetch Paiements (Revenus)
+      const { data: paiements } = await supabase
+        .from('paiements')
+        .select('montant')
+        .eq('statut', 'paye');
+      
+      const totalRevenus = paiements?.reduce((sum, p) => sum + Number(p.montant), 0) || 0;
+      setRevenus(totalRevenus);
+
+    } catch (error) {
+      console.error('Error fetching stats:', error);
+    }
+  };
+
   const stats = [
-    { label: 'Total Élèves', value: '450', icon: Users, color: 'bg-blue-500', textColor: 'text-blue-500' },
-    { label: 'Enseignants', value: '32', icon: GraduationCap, color: 'bg-purple-500', textColor: 'text-purple-500' },
-    { label: 'Revenus Mensuels', value: '45k €', icon: DollarSign, color: 'bg-green-500', textColor: 'text-green-500' },
+    { label: 'Total Élèves', value: totalEleves.toString(), icon: Users, color: 'bg-blue-500', textColor: 'text-blue-500' },
+    { label: 'Enseignants', value: totalEnseignants.toString(), icon: GraduationCap, color: 'bg-purple-500', textColor: 'text-purple-500' },
+    { label: 'Revenus', value: `${revenus.toLocaleString('fr-FR')} €`, icon: DollarSign, color: 'bg-green-500', textColor: 'text-green-500' },
     { label: 'Réussite Globale', value: '88%', icon: TrendingUp, color: 'bg-orange-500', textColor: 'text-orange-500' },
   ];
 
@@ -205,49 +247,7 @@ function DirectriceOverview() {
   );
 }
 
-function DirectriceFinances() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Supervision Financière</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Rapports financiers détaillés...</p>
-      </div>
-    </div>
-  );
-}
 
-function DirectriceUtilisateurs() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Gestion des Utilisateurs</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Administration des comptes utilisateurs...</p>
-      </div>
-    </div>
-  );
-}
-
-function DirectricePedagogie() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Supervision Pédagogique</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Suivi des performances académiques...</p>
-      </div>
-    </div>
-  );
-}
-
-function DirectriceParametres() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Paramètres Système</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Configuration de l'application...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function DirectriceDashboard() {
   return (
@@ -256,6 +256,7 @@ export default function DirectriceDashboard() {
       <Route path="finances" element={<DirectriceFinances />} />
       <Route path="utilisateurs" element={<DirectriceUtilisateurs />} />
       <Route path="pedagogie" element={<DirectricePedagogie />} />
+      <Route path="annonces" element={<DirectriceAnnonces />} />
       <Route path="parametres" element={<DirectriceParametres />} />
     </Routes>
   );

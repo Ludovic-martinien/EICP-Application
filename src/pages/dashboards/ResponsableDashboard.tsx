@@ -3,6 +3,10 @@ import { Users, GraduationCap, TrendingUp, BarChart2, Calendar, Search } from 'l
 import { motion } from 'motion/react';
 import { useAuth } from '../../context/AuthContext';
 import { Routes, Route, Link } from 'react-router-dom';
+import ResponsableClasses from './responsable/ResponsableClasses';
+import ResponsableEnseignants from './responsable/ResponsableEnseignants';
+import ResponsableConseils from './responsable/ResponsableConseils';
+import ResponsableStatistiques from './responsable/ResponsableStatistiques';
 
 function ResponsableOverview() {
   const { profile } = useAuth();
@@ -164,49 +168,7 @@ function ResponsableOverview() {
   );
 }
 
-function ResponsableClasses() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Classes Supervisées</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Liste des classes et performances...</p>
-      </div>
-    </div>
-  );
-}
 
-function ResponsableEnseignants() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Enseignants</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Liste des enseignants du niveau...</p>
-      </div>
-    </div>
-  );
-}
-
-function ResponsableConseils() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Conseils de Classe</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Planification et rapports des conseils...</p>
-      </div>
-    </div>
-  );
-}
-
-function ResponsableStatistiques() {
-  return (
-    <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-white">Statistiques</h1>
-      <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-700 p-6">
-        <p className="text-slate-500 dark:text-slate-400">Analyses détaillées des résultats...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function ResponsableDashboard() {
   return (

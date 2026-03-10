@@ -1,6 +1,8 @@
 import React, { useState, useEffect, FormEvent } from 'react';
 import { Lock, RefreshCw, Trash2, Search, LogOut } from 'lucide-react';
 import { motion } from 'motion/react';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 interface Inquiry {
   id: number;
@@ -19,6 +21,8 @@ export default function Admin() {
   const [inquiries, setInquiries] = useState<Inquiry[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const { signOut } = useAuth();
+  const navigate = useNavigate();
 
   const handleLogin = (e: FormEvent) => {
     e.preventDefault();
@@ -28,6 +32,12 @@ export default function Admin() {
     } else {
       alert('Mot de passe incorrect');
     }
+  };
+
+  const handleSignOut = async () => {
+    setIsAuthenticated(false);
+    await signOut();
+    navigate('/login');
   };
 
   const fetchInquiries = async () => {
@@ -104,7 +114,7 @@ export default function Admin() {
             Administration
           </h1>
           <button 
-            onClick={() => setIsAuthenticated(false)}
+            onClick={handleSignOut}
             className="text-slate-500 dark:text-slate-400 hover:text-brand-red dark:hover:text-red-400 transition-colors flex items-center gap-2"
           >
             <LogOut size={20} />
